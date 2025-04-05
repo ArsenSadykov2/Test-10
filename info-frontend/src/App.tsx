@@ -21,7 +21,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<News/>}/>
               <Route path="/news/:id" element={<FullNews/>}/>
-              {/*<Route path="/comments" element={<Comments/>}/>*/}
+              <Route path="/comments" element={<Comments/>}/>
               <Route path="/news/new" element={<NewNews/>}/>
               <Route path="*" element={<Typography variant="h4">Not found page</Typography>}/>
             </Routes>

@@ -2,25 +2,25 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import axiosAPI from "../../axiosApi.ts";
 import {News, NewsMutation} from "../../types";
 
-export const fetchAllNews = createAsyncThunk<News[], void>(
-    'news/fetchAllNews',
+export const fetchAllComments = createAsyncThunk<Comment[], void>(
+    'comments/fetchAllComments',
     async () => {
-        const response = await axiosAPI.get<News[]>('/news');
+        const response = await axiosAPI.get<Comment[]>('/comments');
         return response.data;
     }
 );
 
-export const fetchNewsById = createAsyncThunk<News, string>(
-    'news/fetchNewsById',
+export const fetchCommentById = createAsyncThunk<News, string>(
+    'comments/fetchCommentById',
     async (news_id) => {
-        const response = await axiosAPI.get<News>('/news/' + news_id);
+        const response = await axiosAPI.get<News>('/comments/' + news_id);
         return response.data || null;
     }
 );
 
 
-export const createNews = createAsyncThunk<void, NewsMutation>(
-    'news/createNews',
+export const createComment = createAsyncThunk<void, NewsMutation>(
+    'comments/createComment',
     async (newsToAdd) => {
         const formData = new FormData();
         const keys = Object.keys(newsToAdd) as (keyof NewsMutation)[];
@@ -32,20 +32,20 @@ export const createNews = createAsyncThunk<void, NewsMutation>(
             }
         });
 
-        await axiosAPI.post('/news', formData);
+        await axiosAPI.post('/comments', formData);
     }
 );
 
-export const deleteNews = createAsyncThunk<void, string>(
-    'news/deleteNews',
+export const deleteComment = createAsyncThunk<void, string>(
+    'comments/deleteComment',
     async (newsId, { rejectWithValue }) => {
         try {
-            const checkResponse = await axiosAPI.get(`/comments?news_id=${newsId}`);
+            const checkResponse = await axiosAPI.get(`/news?news_id=${newsId}`);
             if (checkResponse.data.length > 0) {
                 return rejectWithValue('Нельзя удалить новость с комментариями');
             }
 
-            await axiosAPI.delete(`/news/${newsId}`);
+            await axiosAPI.delete(`/comments/${newsId}`);
         } catch (error) {
             return rejectWithValue('Ошибка при удалении');
         }
