@@ -5,6 +5,7 @@ import AppToolBar from "./components/UI/AppToolBar/AppToolBar.tsx";
 import News from "./containers/news/News.tsx";
 import FullNews from "./containers/news/FullNews.tsx";
 import NewNews from "./containers/news/NewNews.tsx";
+import Comments from "./containers/comments/Comments.tsx";
 
 
 const App = () => {

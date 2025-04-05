@@ -23,12 +23,12 @@ const News = () => {
             <Grid container justifyContent="space-between" alignItems="center">
                 <Grid>
                     <Typography variant="h4">
-                        Products
+                        News
                     </Typography>
                 </Grid>
                 <Grid>
                     <Button color="primary" component={Link} to='/news/new'>
-                        Add product
+                        Add News
                     </Button>
                 </Grid>
             </Grid>
